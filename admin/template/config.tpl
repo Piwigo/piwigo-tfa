@@ -1,4 +1,4 @@
-{combine_css path=$SKELETON_PATH|@cat:"admin/template/style.css"}
+{combine_css path=$TFA_PATH|@cat:"admin/template/style.css"}
 {combine_script id='common' load='footer' path='admin/themes/default/js/common.js'}
 
 {footer_script}
@@ -6,7 +6,7 @@
 
 
 <div class="titrePage">
-	<h2>Skeleton</h2>
+	<h2>Two Factor Authentification</h2>
 </div>
 
 <form method="post" action="" class="properties">

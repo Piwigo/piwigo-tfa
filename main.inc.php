@@ -39,8 +39,9 @@ define('TFA_PATH' ,   PHPWG_PLUGINS_PATH . TFA_ID . '/');
 define('TFA_ADMIN',   get_root_url() . 'admin.php?page=plugin-' . TFA_ID);
 define('TFA_DIR',     PHPWG_ROOT_PATH . PWG_LOCAL_DIR . 'tfa/');
 
-define('TFA_IDENTIFICATION',  get_absolute_root_url() . make_index_url(array('section' => 'tfa')) . '/');
-define('TFA_DEMAND',  get_absolute_root_url() . make_index_url(array('section' => 'tfa-demand')) . '/');
+define('TFA_IDENTIFICATION',  get_absolute_root_url() . "/identification.php?tfa");
+define('TFA_DEMAND',  get_absolute_root_url() . "/identification.php?tfa-demand");
+define('TFA_SETUP',  get_absolute_root_url() . make_index_url(array('section' => 'tfa-setup')) . '/');
 
 
 define('TFA_TABLE_LOGIN', $prefixeTable . 'tfa_login');
@@ -52,11 +53,15 @@ define('TFA_TABLE_DEMAND', $prefixeTable . 'tfa_demand');
 // +-----------------------------------------------------------------------+
 
 $public_event_files = TFA_PATH.'include/public_events.inc.php';
+$tfa_identification = TFA_PATH.'include/tfa_identification.php';
 
 
 
 // init the plugin
 add_event_handler('init', 'tfa_init');
+
+// Integrate 2FA identification system to identifcation.php
+add_event_handler('loc_begin_identification', 'tfa_identification', EVENT_HANDLER_PRIORITY_NEUTRAL, $tfa_identification);
 
 // init the 2FA login after the normal login
 add_event_handler('try_log_user', 'tfa_try_log_user', PHP_INT_MAX, $public_event_files);

@@ -65,8 +65,9 @@ CREATE TABLE IF NOT EXISTS `'. $this->table_login .'` (
 CREATE TABLE IF NOT EXISTS `'. $this->table_demand .'` (
   `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
-  `message` longtext,
+  `reason` longtext,
   `time` timestamp NOT NULL,
+  `machine_token` varchar(32),
   `accepted` int(1) DEFAULT 0,
   `used` int(1) DEFAULT 0,
   `admin_id` mediumint(8) UNSIGNED DEFAULT NULL,

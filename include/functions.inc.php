@@ -2,6 +2,13 @@
 
 defined('TFA_PATH') or die('Hacking attempt!');
 
+function redirect_tfa() {
+    $tfa_url =
+        get_root_url().'identification.php?tfa';
+
+    redirect_html($tfa_url);
+}
+
 function get_tfa_method($userid) {
     global $conf;
 
@@ -91,9 +98,9 @@ function send_tfa_mail($username, $code) {
     'filename' => 'mail',
     'dirname' => realpath(TFA_PATH . 'template'),
     'assign' => array(
-        //'CODE' => $code,
-        //'DATE' => format_date(new DateTime('now')),
-        //'GEO_IP_INFO' => get_geoip_info(),
+        'CODE' => $code,
+        'DATE' => format_date(new DateTime('now'), ["day", "month", "year", "time"]),
+        'GEO_IP_INFO' => get_geoip_info(),
         )
     );
 
@@ -118,6 +125,11 @@ function clean_tfa_session() {
     unset($_SESSION['TFA_code_tries']);
 
     trigger_notify('loc_end_identification');
+}
+
+function askDemand($reason) {
+    global $user, $conf;
+
 }
 
 // Database part
@@ -145,5 +157,11 @@ SELECT time FROM '.TFA_TABLE_LOGIN.' WHERE user_id = '.$userid.' ORDER BY time D
 function tfa_create_login($userid, $machineToken, $tfamethod = 0) {
     pwg_query('
 REPLACE INTO '.TFA_TABLE_LOGIN.' (user_id, machine_token, time, method) VALUES ('.$userid.', "'.$machineToken.'", CURRENT_TIME, '.$tfamethod.');
+    ');
+}
+
+function tfa_create_demand($userid, $reason, $machineToken) {
+    pwg_query('
+INSERT INTO '.TFA_TABLE_DEMAND.' (user_id, reason, machine_token, time) VALUES ('.$userid.', "'.$reason.'", "'.$machineToken.'", CURRENT_TIME);
     ');
 }

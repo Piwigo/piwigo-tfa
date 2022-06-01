@@ -28,7 +28,7 @@
   </fieldset>
 
   <p>
-    <input tabindex="4" type="submit" name="login" value="{'Submit'|@translate}">
+    <input tabindex="4" type="submit" name="tfa" value="{'Submit'|@translate}">
   </p>
 
 	{* <p>
@@ -39,6 +39,6 @@
 
 </form>
 
-<script type="text/javascript"><!--
-document.querySelector('#code').focus();
-//--></script>
+<script defer type="text/javascript">
+  document.querySelector('#code').focus();
+</script>
