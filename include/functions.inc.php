@@ -100,7 +100,7 @@ function send_tfa_mail($username, $code) {
     'assign' => array(
         'CODE' => $code,
         'DATE' => format_date(new DateTime('now'), ["day", "month", "year", "time"]),
-        'GEO_IP_INFO' => get_geoip_info(),
+        //'GEO_IP_INFO' => get_geoip_info(),
         )
     );
 
