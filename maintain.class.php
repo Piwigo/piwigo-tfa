@@ -10,9 +10,9 @@ defined('PHPWG_ROOT_PATH') or die('Hacking attempt!');
 class tfa_maintain extends PluginMaintain
 {
   private $default_conf = array(
-    'on_new_machine' => false,
+    'on_new_machine' => true,
     'code_tries' => 3,
-    'duration' => 0,
+    'duration' => 30,
     'tfa_type' => 0, // 0 : Mail, 1 : Phone, 3 : User's choice
   );
   
@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `'. $this->table_demand .'` (
    */
   function activate($plugin_version, &$errors=array())
   {
-    $this->install($plugin_version, $errors);
+
   }
 
   /**
@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `'. $this->table_demand .'` (
    */
   function deactivate()
   {
-    $this->uninstall();
+
   }
 
   /**
