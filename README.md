@@ -1,7 +1,7 @@
 # TFA : 2 factor authentification plugin for Piwigo
 
+*Warning ! This plugin is currently in BETA, it may have bugs and missing feature.*
+
 * Internal name: `TFA` (directory name in `plugins/`)
 
-Allow administrator to demand an authentification by mail.
-
-Plugin currently in development
+Allow a double authentification by mail.
