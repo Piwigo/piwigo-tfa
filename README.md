@@ -1,4 +1,4 @@
-# TFA : 2 factor authentification plugin for Piwigo
+# TFA : Two-factor Authentication plugin for Piwigo
 
 *Warning ! This plugin is currently in BETA, it may have bugs and missing feature.*
 
